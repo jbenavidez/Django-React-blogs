@@ -18,7 +18,7 @@ class WheelsSerializer(serializers.ModelSerializer):
     if user_info.exists():
       raise serializers.ValidationError("this email is taken")
 
-
+    return data
 
   def create(self, validated_data):
     # not required to use this functions, I create4d for example porpuses,
@@ -37,18 +37,20 @@ class WheelsSerializer(serializers.ModelSerializer):
 #USER LOGIN CLASS 
 class WheelsUserLoginSerializer(serializers.ModelSerializer):
   token = serializers.CharField(allow_blank= True, read_only = True)
-  
+  username =  serializers.CharField(allow_blank= True, read_only = True)
   class Meta:
     model = models.WheelsUsers
     fields = [
             'email',
             'password',
-            'token'
+            'token',
+            'username'
           ]
 
 
   def validate(self,data):
     user_obj = None
+    username  = None 
     email = data.get("email", None)
     password = data['password']
     if not email:
@@ -67,10 +69,12 @@ class WheelsUserLoginSerializer(serializers.ModelSerializer):
 
     if user_obj:
       #if not user_obj.check_password(password): when you store on the user table use this command to check the password
+      username = user_obj.username
       if   user_obj.password != password:
         raise serializers.ValidationError("incorrect password")
 
-    data["token"] = "testr token"
+    data["token"] = "tester_token"
+    data["username"] = username
         
 
     return data

@@ -25,8 +25,21 @@ class Login extends React.Component{
 
       // console.log(this.state)
       try{
-        await this.props.loginUser(this.state);
-        console.log('call login api work')
+        const user = await this.props.loginUser(this.state);
+        console.log('call login api work', )
+       
+        //store the user on the browser 
+        localStorage.setItem('user', JSON.stringify(user))
+        try{
+           this.props.setAuthUSer(user)
+        }catch(errors){
+          console.log("the error")
+        }
+        //redirect the user 
+        this.props.history.push('/-/home');
+
+
+
       }catch(errors){
         console.log('call login api : FAILED', errors)
         this.setState({

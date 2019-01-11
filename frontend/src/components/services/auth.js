@@ -90,7 +90,7 @@ export default class AUthService{
           try{
             await validateAll(data, rules, messages)
             //make sure you create the api on django to login user 
-            const response = await  Axios.post( config.apiurl ,{
+            const response = await  Axios.post( config.loginApiUrl ,{
               //Axios.post(`${config.apiurl}/auth/register`,{
          
               email: data.email,
