@@ -19,7 +19,7 @@ class Login extends React.Component{
     });
     
   }
-
+  
   handleSubmit = async (event) =>{
     event.preventDefault();
 
@@ -55,6 +55,7 @@ class Login extends React.Component{
       <LoginForm 
       handleInputChange = {this.handleInputChange}
       handleSubmit = {this.handleSubmit}
+      errors = {this.state.errors}
       />
     );
   }

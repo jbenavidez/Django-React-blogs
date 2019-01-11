@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-const LoginForm = ({handleInputChange, handleSubmit}) =>{
+const LoginForm = ({handleInputChange, handleSubmit,errors}) =>{
     
     return(
         <div className="mh-fullscreen bg-img center-vh p-20" style={{backgroundImage: 'url(assets/img/bg-girl.jpg)'}}>
@@ -12,9 +12,17 @@ const LoginForm = ({handleInputChange, handleSubmit}) =>{
           <form onSubmit = { handleSubmit }>
             <div className="form-group">
               <input type="text" className="form-control" placeholder="Username"   name="email" onChange ={handleInputChange}/>
+              {
+            errors['email'] &&
+             <small className='text-danger'>{errors['email']}</small>
+           }
             </div>
             <div className="form-group">
               <input type="password" className="form-control" placeholder="Password" name="password"  onChange ={handleInputChange} />
+              {
+            errors['password'] &&
+             <small className='text-danger'>{errors['password']}</small>
+           }
             </div>
             <div className="form-group flexbox py-10">
               <label className="custom-control custom-checkbox">
