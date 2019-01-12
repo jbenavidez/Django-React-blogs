@@ -21,7 +21,7 @@ import './components/styles/assets/css/thesaas.min.css';
 import './components/styles/assets/css/style.css';
 import AuthService from './components/services/auth';
 import AUthService from './components/services/auth';
-
+import ArticleServices from './components/services/articles';
 
 class App extends React.Component {
 
@@ -68,7 +68,16 @@ class App extends React.Component {
        
      <Route exact path='/-/home' component={Welcome} />
      
-     <Route exact path='/-/articles/create' component={CreateArticle} />
+     <Route exact 
+     path='/-/articles/create' 
+   
+     render = { (props) =>  <CreateArticle {...props} 
+     authUser = { this.state.authUser}
+     createArticle = {this.props.ArticleServices.createArticle}
+     getArticleCategories= {this.props.ArticleServices.getArticleCategories} />} />
+      
+
+
      <Route exact path='/-/login'
       render=  { (props) =>  <Login {...props} setAuthUSer={this.setAuthUSer} loginUser={this.props.AuthService.loginUser} />} 
        />
@@ -91,7 +100,7 @@ class App extends React.Component {
 //withrouter take a function 
 const Main  = withRouter((props) =>{
     return (
-        <App AuthService= { new AUthService()} {...props} />
+        <App AuthService= { new AUthService()} {...props}  ArticleServices = { new ArticleServices()}/>
     );
 });
 
