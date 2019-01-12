@@ -1,0 +1,46 @@
+{% extends "admin_default.html" %}
+{% block layout_content %}
+<div>
+{% if messages %}
+{% for message in messages %}
+<div class='alert alert-{{ message.tags }} {% if message.tags == "error" %} alert-danger {% endif %}' style="margin-top:50px;">
+   <button type="button" class="close" data-dismiss="alert"><strong>x</strong></button>
+   <strong> {{ message }}  </strong>
+</div>
+{% endfor %}
+{% endif %}
+
+   <div class="card mt-5"  >
+      <div class="card-header">
+         Articles Categories
+      </div>
+      <table class="table">
+         <thead>
+            <tr>
+               <th scope="col">name</th>
+               <th scope="col">Slug</th>
+               <th scope="col">Article counter</th>
+               <th scope="col">Action</th>
+            </tr>
+         </thead>
+         <tbody>
+         {% for item in article_categories %}
+            <tr>
+               <td>{{item.name}}</td>
+               <td>{{item.slug}}</td>
+               <td>0</td>
+               <td>
+                  <div class="btn-gro up" role="group" aria-label="Basic example">
+                     <a  href="#" class="btn btn-primary">View Articles </a>
+                     <a href="{% url 'delete_categories' item.id %}" class="btn btn-danger">Delete</a>
+                     
+                  </div>
+               </td>
+            </tr>
+            {% endfor %}
+ 
+         </tbody>
+      </table>
+   </div>
+</div>
+{% endblock %}

@@ -90,6 +90,7 @@ class ArticleCategoriesSerializer(serializers.ModelSerializer):
     fields =  [
             'name',
             'slug',
+            'id'
         
           ]
 
