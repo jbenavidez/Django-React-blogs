@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 
 WheelsUSer  = models.WheelsUsers
 article_catories = models.ArticleCategory
-
+articles_model =  models.Articles
 
 class WheelsSerializer(serializers.ModelSerializer):
   class Meta:
@@ -109,3 +109,43 @@ class ArticleCategoriesSerializer(serializers.ModelSerializer):
     )
     user_objct.save()
     return validated_data
+
+
+#USER  CREATE ARTICLLE CLASS 
+class CreateArticleSerializer(serializers.ModelSerializer):
+  wheel_user_key =  serializers.CharField(allow_blank= True , read_only = True)
+  category_key =  serializers.CharField(allow_blank= True , read_only = True)
+  class Meta:
+    model = articles_model
+    fields =  [
+            'title',
+            'content',
+            'imgUrl',
+            'id',
+            'wheel_user_key',
+            'category_key'
+        
+          ]
+
+
+  def create(self, validated_data):
+    # not required to use this functions, I create4d for example porpuses,
+    title = validated_data['name']
+    content = validated_data['name']
+    imgUrl = validated_data['name']
+ 
+    user_objct = article_catories(
+                    title = title,
+                    content = content,
+                    imgUrl = imgUrl, 
+                    category_key = the_category_key, 
+                    wheel_user_key = the_wheel_user_key, 
+                     
+    )
+    user_objct.save()
+    return validated_data
+
+
+
+
+  

@@ -20,6 +20,10 @@ class ArticleCatoriesList(generics.ListCreateAPIView):
   queryset = models.ArticleCategory.objects.all()
   serializer_class = serializers.ArticleCategoriesSerializer
 
+class CreateArticle(generics.ListCreateAPIView):
+  queryset = models.Articles.objects.all()
+  serializer_class = serializers.CreateArticleSerializer
+
 
 class UsernameDetail(generics.RetrieveUpdateDestroyAPIView):
   queryset = models.WheelsUsers.objects.all()

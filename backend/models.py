@@ -16,4 +16,13 @@ class  ArticleCategory(models.Model):
     slug = models.CharField( max_length=150)  
  
 
+class Articles(models.Model):
+    title = models.TextField()
+    content = models.TextField()
+    imgUrl  = models.TextField()
+    wheel_user_key =  models.ForeignKey(WheelsUsers, blank=True, null=True, on_delete=models.SET_NULL)
+    category_key = models.ForeignKey(ArticleCategory, blank=True, null=True, on_delete=models.SET_NULL)
+
+
+
  
