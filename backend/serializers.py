@@ -1,9 +1,11 @@
 from rest_framework import serializers
 from django.db.models import Q 
 from . import models
-
+from django.template.defaultfilters import slugify
 
 WheelsUSer  = models.WheelsUsers
+article_catories = models.ArticleCategory
+
 
 class WheelsSerializer(serializers.ModelSerializer):
   class Meta:
@@ -79,3 +81,30 @@ class WheelsUserLoginSerializer(serializers.ModelSerializer):
 
     return data
 
+
+#ARTICLE CATEGORIES API 
+class ArticleCategoriesSerializer(serializers.ModelSerializer):
+  slug =  serializers.CharField(allow_blank= True , read_only = True)
+  class Meta:
+    model = article_catories
+    fields =  [
+            'name',
+            'slug',
+        
+          ]
+
+
+ 
+
+  def create(self, validated_data):
+    # not required to use this functions, I create4d for example porpuses,
+    name = validated_data['name']
+    slug =slugify(name)
+ 
+    user_objct = article_catories(
+                    name = name,
+                    slug = slug,
+                     
+    )
+    user_objct.save()
+    return validated_data

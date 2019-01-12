@@ -11,7 +11,9 @@ class WheelsUsers(models.Model):
  
 
 
-   
-
+class  ArticleCategory(models.Model):
+    name = models.CharField( max_length=150)
+    slug = models.CharField( max_length=150)  
+ 
 
  

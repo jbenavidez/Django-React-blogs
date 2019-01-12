@@ -4,9 +4,10 @@ import config from '../config'
 export default class ArticleServices {
 
     async getArticleCategories(){
-        const response  = await Axios.get(`https://react-blog-api.bahdcasts.com/api/categories`);
+        const response  = await Axios.get(`http://127.0.0.1:8000/api/v1/categories/`);
         //django remove categorie use -> response.data
-        return response.data.categories;
+        console.log("friday can you see me" ,response)
+        return response.data;
     }
 
       createArticle =  async (data,token) => {

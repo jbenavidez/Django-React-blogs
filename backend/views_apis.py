@@ -14,6 +14,13 @@ class UsernameList(generics.ListCreateAPIView):
   queryset = models.WheelsUsers.objects.all()
   serializer_class = serializers.WheelsSerializer
 
+
+
+class ArticleCatoriesList(generics.ListCreateAPIView):
+  queryset = models.ArticleCategory.objects.all()
+  serializer_class = serializers.ArticleCategoriesSerializer
+
+
 class UsernameDetail(generics.RetrieveUpdateDestroyAPIView):
   queryset = models.WheelsUsers.objects.all()
   serializer_class = serializers.WheelsSerializer
